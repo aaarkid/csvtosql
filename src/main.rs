@@ -11,8 +11,8 @@ fn read_arguments () -> Result<(usize, String, String, String, Vec<String>), Box
     let output_file = args.next().unwrap();
     let table_name = args.next().unwrap();
     let args = args.collect::<Vec<String>>();
-    if args.len() != n + 5 {
-        return Err(Box::new(std::io::Error::new(std::io::ErrorKind::InvalidInput, "Invalid number of arguments")));
+    if args.len() != n {
+        return Err(Box::new(std::io::Error::new(std::io::ErrorKind::InvalidInput, format!("Invalid number of arguments. N is {}, Arguments supplied: {}", n, args.len()))));
     }
 
     Ok((n, input_file, output_file, table_name, args))
