@@ -27,16 +27,16 @@ fn create_sql_insert_statements(csv_data: &Vec<String>) -> Vec<String> {
 }
 
 fn write_file (queries: &Vec<String>) -> Result<(), Box<dyn Error>> {
-    let mut file = File::create("queries.sql")?;
+    let mut file = File::create("ext/queries.sql")?;
     for query in queries {
         file.write_all(query.as_bytes())?;
-        file.write_all("\n".as_bytes())?;
+        file.write_all(";\n".as_bytes())?;
     }
     Ok(())
 }
 
 fn main() {
-    let csv = match read_csv_from_file("Numrat.csv") {
+    let csv = match read_csv_from_file("ext/Numrat.csv") {
         Ok(csv) => csv,
         Err(err) => {
             println!("Error: {}", err);
